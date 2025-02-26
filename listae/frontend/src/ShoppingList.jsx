@@ -7,13 +7,13 @@ function ShoppingList() {
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/items")
+    fetch("http://localhost:5173/items")
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
 
   const addItem = () => {
-    fetch("http://127.0.0.1:5000/items", {
+    fetch("http://localhost:5173/items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, quantity, price }),
@@ -24,16 +24,27 @@ function ShoppingList() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">LISTA DE COMPRAS!</h1>
-      <div className="mb-4">
-        <input className="border p-2 w-64" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        <input className="border p-2 w-16" type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
-        <button className="bg-blue-500 text-white p-2 rounded" onClick={addItem}>Add</button>
-      </div>
+      <h1>SUAS LISTAS</h1>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="number"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
+      />
+      <input
+        type="number"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+      />
+      <button onClick={addItem}>Add Item</button>
       <ul>
         {items.map((item) => (
-          <li key={item.id} className="p-2 border-b flex justify-between">
-            {item.name} x{item.quantity} - ${item.price.toFixed(2)}
+          <li key={item.id}>
+            {item.name} - {item.quantity} - {item.price}
           </li>
         ))}
       </ul>
