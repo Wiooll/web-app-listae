@@ -24,7 +24,7 @@ function ShoppingList() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Shopping List</h1>
+      <h1 className="text-2xl font-bold mb-4">LISTA DE COMPRAS!</h1>
       <div className="mb-4">
         <input className="border p-2 w-64" type="text" value={name} onChange={(e) => setName(e.target.value)} />
         <input className="border p-2 w-16" type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
