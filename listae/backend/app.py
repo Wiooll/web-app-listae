@@ -1,13 +1,13 @@
 from flask import Flask
-from flask_cors import CORS
-from flask_restful import Api
-from routes import initialize_routes
+from database import db  # Certifique-se de importar corretamente o db
 
 app = Flask(__name__)
-CORS(app)  # Permitir requisições do frontend
-api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///listae.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-initialize_routes(api)
+db.init_app(app)  # Agora db estará definido corretamente
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
+
+    # Certifique-se de importar corretamente o db
