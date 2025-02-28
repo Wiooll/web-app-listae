@@ -24,6 +24,19 @@ function ShoppingList() {
 
   return (
     <div>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
       <h1>SUAS LISTAS</h1>
       <input
         type="text"
@@ -40,7 +53,8 @@ function ShoppingList() {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />
-      <button onClick={addItem}>Add Item</button>
+      <br />
+      <button onClick={addItem}>+</button>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
@@ -48,6 +62,7 @@ function ShoppingList() {
           </li>
         ))}
       </ul>
+      <button onClick={() => setItems([])}>Limpar Lista</button>
     </div>
   );
 }
